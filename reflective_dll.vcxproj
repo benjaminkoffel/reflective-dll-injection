@@ -145,7 +145,7 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\Release\reflective_dll.dll ..\bin\</Command>
+      <Command>copy Release\reflective_dll.dll bin\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
